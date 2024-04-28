@@ -2,6 +2,7 @@ package com.example.okeychef.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,19 +15,23 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.okeychef.R
 
 @Composable
 fun BannerImage() {
@@ -156,6 +161,21 @@ fun CardKategori(
 }
 
 
+@Composable
+fun ExpandCard(title: String, contentText: String) {
+    var expanded by remember { mutableStateOf(false) }
+
+    Column {
+        Row(modifier = Modifier.clickable { expanded = !expanded }.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Text(text = title)
+            Icon(imageVector = if (expanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown, contentDescription = null)
+        }
+        if (expanded) {
+            Text(text = contentText)
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun Preview() {
@@ -176,11 +196,17 @@ fun Preview() {
 //        modifier = Modifier.fillMaxWidth()
 //    )
 
-    CardKategori(
-        foodLocation = "Jakarta",
-        foodName = "Sop",
-        image = painterResource(id = R.drawable.main_banner_image),
-        like = "400",
-        modifier = Modifier.fillMaxWidth().padding(20.dp)
+//    CardKategori(
+//        foodLocation = "Jakarta",
+//        foodName = "Sop",
+//        image = painterResource(id = R.drawable.main_banner_image),
+//        like = "400",
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(20.dp)
+//    )
+    ExpandCard(
+        title = "Bahan bahan",
+        contentText = "2 Piring nasi putih - bisa menggunakan nasi yang sudah dingin atau dibuat baru dan didinginkan terlebih dahulu."
     )
 }

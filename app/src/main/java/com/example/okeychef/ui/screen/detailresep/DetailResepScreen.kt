@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Fastfood
@@ -15,7 +16,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.okeychef.R
+import com.example.okeychef.ui.components.ExpandCard
 
 
 @Composable
@@ -68,6 +73,29 @@ fun DetailResepScreen(
             }
         }
 
-
+        ExpandCard(
+            title = "Bahan Bahan",
+            contentText = "2 Piring nasi putih - bisa menggunakan nasi yang sudah dingin atau dibuat baru dan didinginkan terlebih dahulu."
+        )
+        ExpandCard(title = "Alat Yang Digunakan", contentText = "Wajan atau penggorengan.")
+        ExpandCard(
+            title = "Langkah - Langkah",
+            contentText = "Siapkan Bahan dan Alat: Potong semua bahan seperti daging, sayuran, dan bumbu-bumbu. Panaskan wajan atau penggorengan dengan minyak atau margarin."
+        )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewDetail() {
+    DetailResepScreen(
+        modifier = Modifier.fillMaxSize(),
+        imageResep = painterResource(id = R.drawable.main_banner_image),
+        namaResep = "Nasi Goreng",
+        lokasiResep = "Jakarta",
+        likeResep = "400",
+        waktuResep = "60 Menit",
+        porsiResep = "1 Orang",
+        halalResep = "Halal"
+    )
 }
